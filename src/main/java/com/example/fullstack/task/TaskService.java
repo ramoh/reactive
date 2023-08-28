@@ -1,7 +1,8 @@
 package com.example.fullstack.task;
 
 import com.example.fullstack.user.UserService;
-import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
+
+import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.quarkus.security.UnauthorizedException;
 import io.smallrye.mutiny.Uni;
 import org.hibernate.ObjectNotFoundException;
@@ -37,7 +38,7 @@ public class TaskService {
         .chain(user -> Task.find("user", user).list());
   }
 
-  @ReactiveTransactional
+  @WithTransaction
   public Uni<Task> create(Task task) {
     return userService.getCurrentUser()
         .chain(user -> {
@@ -46,20 +47,20 @@ public class TaskService {
         });
   }
 
-  @ReactiveTransactional
+  @WithTransaction
   public Uni<Task> update(Task task) {
     return findById(task.id)
         .chain(t -> Task.getSession())
         .chain(s -> s.merge(task));
   }
 
-  @ReactiveTransactional
+  @WithTransaction
   public Uni<Void> delete(long id) {
     return findById(id)
         .chain(Task::delete);
   }
 
-  @ReactiveTransactional
+  @WithTransaction
   public Uni<Boolean> setComplete(long id, boolean complete) {
     return findById(id)
         .chain(task -> {

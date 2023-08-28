@@ -26,7 +26,7 @@ public class UserResource {
 
   @GET
   public Uni<List<User>> get() {
-    System.out.println(">>> Get all users?wd");
+    System.out.println(">>> Get all users***");
     return userService.list();
   }
 
