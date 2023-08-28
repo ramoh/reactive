@@ -26,7 +26,7 @@ public class UserResource {
 
   @GET
   public Uni<List<User>> get() {
-    System.out.println(">>> Get all users***");
+    System.out.println(">>> Get all users***w");
     return userService.list();
   }
 
@@ -38,7 +38,7 @@ public class UserResource {
   }
 
   @GET
-  @Path("{id}")
+  @Path("/{id}")
   public Uni<User> get(@PathParam("id") long id) {
     System.out.println("test");
     return userService.findById(id);
@@ -46,20 +46,20 @@ public class UserResource {
 
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("{id}")
+  @Path("/{id}")
   public Uni<User> update(@PathParam("id") long id, User user) {
     user.id = id;
     return userService.update(user);
   }
 
   @DELETE
-  @Path("{id}")
+  @Path("/{id}")
   public Uni<Void> delete(@PathParam("id") long id) {
     return userService.delete(id);
   }
 
   @GET
-  @Path("self")
+  @Path("/self")
   public Uni<User> getCurrentUser() {
     return userService.getCurrentUser();
   }
