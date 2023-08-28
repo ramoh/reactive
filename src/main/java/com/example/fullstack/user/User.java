@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -36,5 +38,10 @@ public class User extends PanacheEntity {
   @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "id"))
   @Column(name = "role")
   public List<String> roles;
+
+  @JsonProperty
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
 }
