@@ -3,6 +3,7 @@ package com.example.fullstack.user;
 import io.smallrye.mutiny.Uni;
 import org.jboss.resteasy.reactive.ResponseStatus;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -62,6 +63,14 @@ public class UserResource {
   @Path("/self")
   public Uni<User> getCurrentUser() {
     return userService.getCurrentUser();
+  }
+
+  @PUT
+  @Path("/self/password")
+  @RolesAllowed("user")
+  public Uni<User> changePassword(PasswordChange passwordChange) {
+
+    return userService.changePassword(passwordChange.currentPassword(), passwordChange.newPassword());
   }
 
 }
