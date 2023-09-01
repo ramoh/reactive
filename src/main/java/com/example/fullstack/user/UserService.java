@@ -12,13 +12,14 @@ import org.hibernate.ObjectNotFoundException;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.ClientErrorException;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
 @ApplicationScoped
-@RolesAllowed("admin")
+
 public class UserService {
   private final JsonWebToken jsonWebToken;
 
@@ -40,7 +41,7 @@ public class UserService {
     return User.listAll();
   }
 
-  @WithTransaction
+  @Transactional
   public Uni<User> create(User user) {
     user.password = BcryptUtil.bcryptHash(user.password);
     return user.persistAndFlush();
@@ -79,7 +80,6 @@ public class UserService {
             .chain(t -> u.delete()));
   }
 
-  @RolesAllowed("user")
   public Uni<User> getCurrentUser() {
     return findByName(jsonWebToken.getName());
   }

@@ -16,6 +16,7 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/v1/users")
+@RolesAllowed("admin")
 public class UserResource {
 
   private final UserService userService;
@@ -27,7 +28,6 @@ public class UserResource {
 
   @GET
   public Uni<List<User>> get() {
-    System.out.println(">>> Get all users***w");
     return userService.list();
   }
 
@@ -41,7 +41,6 @@ public class UserResource {
   @GET
   @Path("/{id}")
   public Uni<User> get(@PathParam("id") long id) {
-    System.out.println("test");
     return userService.findById(id);
   }
 
@@ -61,6 +60,7 @@ public class UserResource {
 
   @GET
   @Path("/self")
+  @RolesAllowed("user")
   public Uni<User> getCurrentUser() {
     return userService.getCurrentUser();
   }
@@ -69,7 +69,6 @@ public class UserResource {
   @Path("/self/password")
   @RolesAllowed("user")
   public Uni<User> changePassword(PasswordChange passwordChange) {
-
     return userService.changePassword(passwordChange.currentPassword(), passwordChange.newPassword());
   }
 

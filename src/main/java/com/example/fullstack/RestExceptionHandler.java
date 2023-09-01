@@ -1,5 +1,6 @@
 package com.example.fullstack;
 
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -7,7 +8,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.StaleObjectStateException;
 
-import io.vertx.pgclient.PgException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -31,8 +31,8 @@ public class RestExceptionHandler implements ExceptionMapper<HibernateException>
   }
 
   private static boolean hasPostgresErrorCode(Throwable throwable, String code) {
-    return getExceptionInChain(throwable, PgException.class)
-        .filter(ex -> Objects.equals(ex.getCode(), code))
+    return getExceptionInChain(throwable, SQLException.class)
+        .filter(ex -> Objects.equals(ex.getSQLState(), code))
         .isPresent();
   }
 

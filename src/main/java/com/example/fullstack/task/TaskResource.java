@@ -32,6 +32,12 @@ public class TaskResource {
     return taskService.listForUser();
   }
 
+  @GET
+  @Path("/{id}")
+  public Uni<Task> getById(@PathParam("id") long id) {
+    return taskService.findById(id);
+  }
+
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @ResponseStatus(201)
@@ -55,7 +61,7 @@ public class TaskResource {
 
   @PUT
   @Path("{id}/complete")
-  public Uni<Boolean> setComplete(long id, boolean complete) {
+  public Uni<Boolean> setComplete(@PathParam("id") long id, boolean complete) {
     return taskService.setComplete(id, complete);
   }
 

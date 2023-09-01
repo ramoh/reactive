@@ -38,7 +38,7 @@ VALUES
 INSERT INTO
   "projects" ("id", "name", "user_id", "created", "version")
 VALUES
-  (0, 'Work', 0, NOW(), 0) ON CONFLICT DO NOTHING;
+  (0, 'Work', 1, NOW(), 0) ON CONFLICT DO NOTHING;
 
 ALTER SEQUENCE IF EXISTS projects_SEQ RESTART WITH 10;
 
