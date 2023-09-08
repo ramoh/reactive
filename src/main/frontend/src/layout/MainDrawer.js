@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useMatch } from 'react-router-dom';
 import {
   Box,
+  Divider,
   Drawer,
   List,
   ListItemButton,
@@ -11,6 +12,8 @@ import {
   Tooltip
 } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
+import PersonIcon from '@mui/icons-material/Person';
+import { HasRole } from '../auth';
 
 const Item = ({ Icon, iconSize, title, to, disableTooltip = false }) => {
   const match = Boolean(useMatch(to));
@@ -44,6 +47,10 @@ export const MainDrawer = ({ drawerOpen, toggleDrawer }) => (
       <List>
         <Item disableTooltip={drawerOpen} Icon={InboxIcon} title='Todo' to='/' />
       </List>
+      <HasRole role="admin">
+        <Divider />
+        <Item disableTooltip={drawerOpen} Icon={PersonIcon} title="Users" to="/users" />
+      </HasRole>
     </Box>
   </Drawer>
 );
