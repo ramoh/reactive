@@ -23,6 +23,7 @@ export const Users = () => {
                 <TableCell>Name</TableCell>
                 <TableCell>Created</TableCell>
                 <TableCell>Roles</TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
