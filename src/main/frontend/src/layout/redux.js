@@ -4,8 +4,15 @@ const layoutSlice = createSlice({
   name: 'layout',
   initialState: {
     drawerOpen: true,
+    changePasswordOpen: false
   },
   reducers: {
+    openChangePassword: state => {
+      state.changePasswordOpen = true;
+    },
+    closeChangePassword: state => {
+      state.changePasswordOpen = false;
+    },
     toggleDrawer: state => {
       state.drawerOpen = !state.drawerOpen;
     }
@@ -13,6 +20,8 @@ const layoutSlice = createSlice({
 });
 
 export const {
-  toggleDrawer
+  toggleDrawer,
+  openChangePassword,
+  closeChangePassword
 } = layoutSlice.actions;
 export const { reducer } = layoutSlice;
