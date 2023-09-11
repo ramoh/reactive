@@ -52,10 +52,12 @@ export const Login = () => {
           </TextField>
         </Box>
         <Button fullWidth variant="contained" onClick={sendLogin} sx={{ mt: 3, mb: 2 }} >Sign In</Button>
-        <Snackbar sx={{
-          position: "relative",
-          mt: 5
-        }}
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'center', // Center vertically
+            horizontal: 'center', // Center horizontally
+          }}
+
           open={Boolean(error)} message={error} autoHideDuration={6000} onClose={() => setError(null)}
         ></Snackbar>
       </Box>
