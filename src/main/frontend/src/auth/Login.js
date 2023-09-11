@@ -51,12 +51,15 @@ export const Login = () => {
             onChange={onChange} value={values.password} onKeyDown={e => e.key === "Enter" && sendLogin()}>
           </TextField>
         </Box>
-        <Button fullWidth variant="contained" onClick={sendLogin} sx={{ mt: 3, mb: 2 }}>Sign In</Button>
-
+        <Button fullWidth variant="contained" onClick={sendLogin} sx={{ mt: 3, mb: 2 }} >Sign In</Button>
+        <Snackbar sx={{
+          position: "relative",
+          mt: 5
+        }}
+          open={Boolean(error)} message={error} autoHideDuration={6000} onClose={() => setError(null)}
+        ></Snackbar>
       </Box>
-      <Snackbar
-        open={Boolean(error)} message={error} autoHideDuration={6000} onClose={() => setError(null)}
-      ></Snackbar>
+
     </Container>
   );
 
