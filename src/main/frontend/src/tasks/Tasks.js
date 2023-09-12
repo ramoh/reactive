@@ -78,7 +78,7 @@ export const Tasks = ({ title = "Tasks", filter = () => true }) => {
           </Table>
           <Box sx={{ mt: 2 }}>
             <Button startIcon={<AddIcon />} onClick={() => dispatch(newTask({ project: project }))}>
-              Add taks
+              Add Task
             </Button>
           </Box>
         </Paper>

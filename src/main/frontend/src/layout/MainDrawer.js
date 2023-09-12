@@ -37,31 +37,30 @@ const Item = ({ Icon, iconSize, title, to, disableTooltip = false }) => {
 
 const Projects = ({ drawerOpen, openNewProject, projects }) => (
   <>
-    <Divider>
-      <ListItem secondaryAction={drawerOpen &&
-        <IconButton edge="end" onClick={openNewProject}>
-          <AddIcon />
-        </IconButton>}>
-        <ListItemIcon><SnippetFolderIcon /></ListItemIcon>
-        <ListItemText primaryTypographyProps={{ fontWeight: "medium" }}>Projects</ListItemText>
-      </ListItem>
-      {
-        Array.from(projects).map(
-          p => (
-            <Item
-              key={p.id}
-              disableTooltip={drawerOpen}
-              Icon={CircleIcon}
-              iconSize="small"
-              title={p.name}
-              to={`/tasks/project/${p.id}`}
-            >
+    <Divider />
+    <ListItem secondaryAction={drawerOpen &&
+      <IconButton edge="end" onClick={openNewProject}>
+        <AddIcon />
+      </IconButton>}>
+      <ListItemIcon><SnippetFolderIcon /></ListItemIcon>
+      <ListItemText primaryTypographyProps={{ fontWeight: "medium" }}>Projects</ListItemText>
+    </ListItem>
+    {
+      Array.from(projects).map(
+        p => (
+          <Item
+            key={p.id}
+            disableTooltip={drawerOpen}
+            Icon={CircleIcon}
+            iconSize="small"
+            title={p.name}
+            to={`/tasks/project/${p.id}`}
+          >
 
-            </Item>
-          )
+          </Item>
         )
-      }
-    </Divider>
+      )
+    }
   </>
 );
 
