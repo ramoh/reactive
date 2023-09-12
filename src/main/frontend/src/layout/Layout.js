@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Toolbar
-} from '@mui/material';
-import { toggleDrawer } from './';
-import { TopBar } from './TopBar';
-import { MainDrawer } from './MainDrawer';
-import { ChangePasswordDialog } from '../users';
+} from "@mui/material";
+import { newTask, openNewProject, toggleDrawer } from "./";
+import { TopBar } from "./TopBar";
+import { MainDrawer } from "./MainDrawer";
+import { ChangePasswordDialog } from "../users";
+import { api, NewProjectDialog } from "../projects";
+import { EditTask } from "../tasks";
 
 export const Layout = ({ children }) => {
   const navigate = useNavigate();
@@ -22,15 +24,20 @@ export const Layout = ({ children }) => {
 
   const drawerOpen = useSelector(state => state.layout.drawerOpen);
   const doToggleDrawer = () => dispatch(toggleDrawer());
+
+  const { data: projects } = api.endpoints.getProjects.useQuery(undefined, { pollingInterval: 60000 });
+  const doOpenNewProject = () => dispatch(openNewProject());
+
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <TopBar
-        goHome={() => navigate('/')}
-        newTask={() => {/* TODO */ }}
+        goHome={() => navigate("/")}
+        newTask={() => dispatch(newTask())}
         toggleDrawer={doToggleDrawer} drawerOpen={drawerOpen}
       />
       <MainDrawer
         toggleDrawer={doToggleDrawer} drawerOpen={drawerOpen}
+        openNewProject={doOpenNewProject} projects={projects}
       />
       <Box sx={{ flex: 1 }}>
         <Toolbar />
@@ -38,6 +45,8 @@ export const Layout = ({ children }) => {
           {children}
         </Box>
       </Box>
+      <EditTask />
+      <NewProjectDialog />
       <ChangePasswordDialog />
     </Box>
   );

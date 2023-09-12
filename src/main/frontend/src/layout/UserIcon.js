@@ -1,10 +1,10 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { api } from "../users";
 import { IconButton, Tooltip, Menu, MenuItem, ListItemIcon } from "@mui/material";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import KeyIcon from '@mui/icons-material/Key';
-import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import KeyIcon from "@mui/icons-material/Key";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { openChangePassword } from "./redux";
 import { logout } from "../auth";
 

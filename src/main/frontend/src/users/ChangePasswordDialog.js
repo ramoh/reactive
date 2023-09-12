@@ -1,5 +1,5 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Alert,
   Button,
@@ -9,10 +9,10 @@ import {
   DialogContentText,
   DialogTitle,
   TextField
-} from '@mui/material';
-import { useForm } from '../useForm';
-import { closeChangePassword } from '../layout';
-import { api } from './';
+} from "@mui/material";
+import { useForm } from "../useForm";
+import { closeChangePassword } from "../layout";
+import { api } from "./";
 
 
 export const ChangePasswordDialog = () => {
@@ -32,7 +32,7 @@ export const ChangePasswordDialog = () => {
         clearForm();
         close();
       } else if (error?.status === 409) {
-        setError('Current password is incorrect');
+        setError("Current password is incorrect");
       } else {
         setError("Unknown error, please try again");
       }

@@ -2,11 +2,11 @@ import React from "react";
 import { api } from "./api";
 import { Layout } from "../layout";
 import { Container, Paper, Typography, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export const Users = () => {
 
-  const { data: allUsers } = api.endpoints.getUsers.useQuery(undefined, { pollingInterval: 10000 });
+  const { data: allUsers } = api.endpoints.getUsers.useQuery(undefined, { pollingInterval: 60000 });
   const { data: self } = api.endpoints.getSelf.useQuery();
   const [deleteUser] = api.endpoints.deleteUser.useMutation();
 
@@ -31,7 +31,7 @@ export const Users = () => {
                 <TableRow key={user.id}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{new Date(user.created).toLocaleDateString()}</TableCell>
-                  <TableCell>{user.roles.join(', ')}</TableCell>
+                  <TableCell>{user.roles.join(", ")}</TableCell>
                   <TableCell align="right">
                     <IconButton disabled={user.id === self?.id} onClick={() => deleteUser(user)}>
                       <DeleteIcon />

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "../useForm";
 import { login } from "./redux";
 import { Avatar, Box, Button, Container, Snackbar, TextField, Typography } from "@mui/material";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -15,12 +15,12 @@ export const Login = () => {
     if (isValid) {
       dispatch(login({ name: values.username, password: values.password }))
         .then(({ meta, payload }) => {
-          if (meta.requestStatus === 'fulfilled') {
-            navigate('/');
+          if (meta.requestStatus === "fulfilled") {
+            navigate("/");
           } else if (payload?.status === 401) {
-            setError('Invalid credentials');
+            setError("Invalid credentials");
           } else {
-            setError('Error');
+            setError("Error");
           }
         });
     }
@@ -30,8 +30,8 @@ export const Login = () => {
     <Container maxWidth="xs">
       <Box sx={{
         mt: theme => theme.spacing(8), display:
-          'flex', flexDirection: 'column', alignItems:
-          'center'
+          "flex", flexDirection: "column", alignItems:
+          "center"
       }}>
         <Avatar sx={{ m: 1 }}>
           <LockOutlinedIcon></LockOutlinedIcon>
@@ -54,8 +54,8 @@ export const Login = () => {
         <Button fullWidth variant="contained" onClick={sendLogin} sx={{ mt: 3, mb: 2 }} >Sign In</Button>
         <Snackbar
           anchorOrigin={{
-            vertical: 'center', // Center vertically
-            horizontal: 'center', // Center horizontally
+            vertical: "bottom", // Center vertically
+            horizontal: "center", // Center horizontally
           }}
 
           open={Boolean(error)} message={error} autoHideDuration={6000} onClose={() => setError(null)}
