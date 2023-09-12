@@ -7,6 +7,7 @@ import KeyIcon from "@mui/icons-material/Key";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { openChangePassword } from "./redux";
 import { logout } from "../auth";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 export const UserIcon = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,7 +24,14 @@ export const UserIcon = () => {
         </IconButton>
       </Tooltip>
       <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
-        {data && <MenuItem>{data.name}</MenuItem>}
+        {data &&
+          <MenuItem >
+            <ListItemIcon>
+              <PersonOutlineOutlinedIcon />
+            </ListItemIcon>
+            {data.name}
+          </MenuItem>
+        }
         <MenuItem onClick={() => { dispatch(openChangePassword()); closeMenu(); }}>
           <ListItemIcon>
             <KeyIcon />
