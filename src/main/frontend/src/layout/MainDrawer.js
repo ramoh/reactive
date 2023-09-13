@@ -56,7 +56,6 @@ const Projects = ({ drawerOpen, openNewProject, projects }) => (
             title={p.name}
             to={`/tasks/project/${p.id}`}
           >
-
           </Item>
         )
       )

@@ -124,15 +124,12 @@ export const EditTask = () => {
                 <ProjectChip task={openTask} onDelete={() => dispatch(setOpenTask({ ...openTask, project: null }))} />
               </Grid>
               <Grid item xs={6} display="flex" justifyContent="flex-end">
-
                 <SelectProject disabled={isComplete}
                   onSelectProject={project => dispatch(setOpenTask({ ...openTask, project }))} />
                 <EditPriority
                   disabled={isComplete}
                   priority={openTask.priority} setPriority={setPriority}
                 />
-
-
               </Grid>
             </Grid>
           </Grid>
